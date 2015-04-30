@@ -54,31 +54,27 @@
 
             function handleComplete() {
                 $('.loader-wrapper').fadeOut();
-                $(function(){
-                    window.loadSlides();
-                    exportRoot = new lib.menu();
+                window.loadSlides();
+                exportRoot = new lib.menu();
 
-                    stage = new createjs.Stage(canvas);
-                    stage.addChild(exportRoot);
-                    stage.update();
+                stage = new createjs.Stage(canvas);
+                stage.addChild(exportRoot);
+                stage.update();
 
-                    createjs.Ticker.setFPS(lib.properties.fps);
-                    createjs.Ticker.addEventListener("tick", stage);
-                })
+                createjs.Ticker.setFPS(lib.properties.fps);
+                createjs.Ticker.addEventListener("tick", stage);
 
             }
 
             function handleComplete2() {
-                $(function(){
-                    exportRoot2 = new lib2.canvas();
+                exportRoot2 = new lib2.canvas();
 
-                    stage2 = new createjs.Stage(canvas2);
-                    stage2.addChild(exportRoot2);
-                    stage2.update();
+                stage2 = new createjs.Stage(canvas2);
+                stage2.addChild(exportRoot2);
+                stage2.update();
 
-                    createjs.Ticker.setFPS(lib2.properties.fps);
-                    createjs.Ticker.addEventListener("tick", stage2);
-                });
+                createjs.Ticker.setFPS(lib2.properties.fps);
+                createjs.Ticker.addEventListener("tick", stage2);
             }
         </script>
         <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400' rel='stylesheet' type='text/css'>
