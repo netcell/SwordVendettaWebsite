@@ -21,11 +21,6 @@
                 loader.addEventListener("complete", handleComplete);
                 loader.loadManifest(lib.properties.manifest);
 
-            var loader2 = new createjs.LoadQueue(false);
-                loader2.addEventListener("fileload", handleFileLoad2);
-                loader2.addEventListener("complete", handleComplete2);
-                loader2.loadManifest(lib2.properties.manifest);
-
             function init() {
                 canvas = document.getElementById("canvas");
                 images = images||{};
@@ -53,6 +48,11 @@
 
                 createjs.Ticker.setFPS(lib.properties.fps);
                 createjs.Ticker.addEventListener("tick", stage);
+
+                var loader2 = new createjs.LoadQueue(false);
+                loader2.addEventListener("fileload", handleFileLoad2);
+                loader2.addEventListener("complete", handleComplete2);
+                loader2.loadManifest(lib2.properties.manifest);
             }
 
             function handleComplete2() {
