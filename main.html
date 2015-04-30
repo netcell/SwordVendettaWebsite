@@ -156,6 +156,11 @@
             <a class="social-button social-facebook" href="http://facebook.com/swordvendetta" target="_blank"></a>
         </div>
 
+        <div id="loader-wrapper" class="loader-wrapper">
+            <div class="loader">
+            </div>
+        </div>
+
         <script src="js/vendor/jquery-1.11.2.min.js"></script>
         <script src="js/vendor/jssor.min.js"></script>
         <script src="js/vendor/jssor.slider.min.js"></script>
@@ -193,6 +198,7 @@
             }
 
             function handleComplete() {
+                $('.loader-wrapper').fadeOut();
                 exportRoot = new lib.menu();
 
                 stage = new createjs.Stage(canvas);
