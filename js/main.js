@@ -1,4 +1,6 @@
-jQuery(document).ready(function ($) {
+window.loadSlides = function () {
+
+    $('#slides').append('<div><img u="image" src="img/alila/01.jpg" /><img u="thumb" src="img/alila/thumb-01.jpg" /></div><div><img u="image" src="img/alila/02.jpg" /><img u="thumb" src="img/alila/thumb-02.jpg" /></div><div><img u="image" src="img/alila/03.jpg" /><img u="thumb" src="img/alila/thumb-03.jpg" /></div><div><img u="image" src="img/alila/04.jpg" /><img u="thumb" src="img/alila/thumb-04.jpg" /></div><div><img u="image" src="img/alila/05.jpg" /><img u="thumb" src="img/alila/thumb-05.jpg" /></div><div><img u="image" src="img/alila/06.jpg" /><img u="thumb" src="img/alila/thumb-06.jpg" /></div><div><img u="image" src="img/alila/07.jpg" /><img u="thumb" src="img/alila/thumb-07.jpg" /></div><div><img u="image" src="img/alila/08.jpg" /><img u="thumb" src="img/alila/thumb-08.jpg" /></div><div><img u="image" src="img/alila/09.jpg" /><img u="thumb" src="img/alila/thumb-09.jpg" /></div>');
 
     var _SlideshowTransitions = [
     //Fade in L
@@ -97,7 +99,7 @@ jQuery(document).ready(function ($) {
     $(window).bind("resize", ScaleSlider);
     $(window).bind("orientationchange", ScaleSlider);
     //responsive code end
-});
+}
 
 $(function() {
     $(".youtube").each(function() {
