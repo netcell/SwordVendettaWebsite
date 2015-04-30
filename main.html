@@ -54,6 +54,7 @@
 
             function handleComplete() {
                 $('.loader-wrapper').fadeOut();
+                console.log(canvas);
                 window.loadSlides();
                 exportRoot = new lib.menu();
 
@@ -68,7 +69,7 @@
 
             function handleComplete2() {
                 exportRoot2 = new lib2.canvas();
-
+                console.log(canvas2);
                 stage2 = new createjs.Stage(canvas2);
                 stage2.addChild(exportRoot2);
                 stage2.update();
