@@ -66,6 +66,7 @@
 
             function handleComplete() {
                 window.loadSlides();
+                console.log(canvas);
                 if (!canvas) return loadCanvas = true;
                 exportRoot = new lib.menu();
 
@@ -79,6 +80,7 @@
             }
 
             function handleComplete2() {
+                console.log(canvas2);
                 if (!canvas2) return loadCanvas2 = true;
                 exportRoot2 = new lib2.canvas();
                 stage2 = new createjs.Stage(canvas2);
