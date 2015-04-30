@@ -17,32 +17,31 @@
             var canvas, stage, exportRoot;
             var canvas2, stage2, exportRoot2;
 
+            var promises = [];
+            for (var i = lib.properties.manifest.length - 1; i >= 0; i--) {
+                promises.push($.get(lib.properties.manifest[i].src));
+            };
+            for (var i = lib2.properties.manifest.length - 1; i >= 0; i--) {
+                promises.push($.get(lib2.properties.manifest[i].src));
+            };
+            $.when.apply($.when, promises).done(function(){
+                var loader = new createjs.LoadQueue(false);
+                    loader.addEventListener("fileload", handleFileLoad);
+                    loader.addEventListener("complete", handleComplete);
+                    loader.loadManifest(lib.properties.manifest);
+
+                var loader2 = new createjs.LoadQueue(false);
+                    loader2.addEventListener("fileload", handleFileLoad2);
+                    loader2.addEventListener("complete", handleComplete2);
+                    loader2.loadManifest(lib2.properties.manifest);
+            });
+
             function init() {
                 canvas = document.getElementById("canvas");
                 images = images||{};
 
                 canvas2 = document.getElementById("canvas2");
                 images2 = images2||{};
-
-                var promises = [];
-                for (var i = lib.properties.manifest.length - 1; i >= 0; i--) {
-                    promises.push($.get(lib.properties.manifest[i].src));
-                };
-                for (var i = lib2.properties.manifest.length - 1; i >= 0; i--) {
-                    promises.push($.get(lib2.properties.manifest[i].src));
-                };
-                $.when.apply($.when, promises).done(function(){
-                    $('.loader-wrapper').fadeOut();
-                    var loader = new createjs.LoadQueue(false);
-                        loader.addEventListener("fileload", handleFileLoad);
-                        loader.addEventListener("complete", handleComplete);
-                        loader.loadManifest(lib.properties.manifest);
-
-                    var loader2 = new createjs.LoadQueue(false);
-                        loader2.addEventListener("fileload", handleFileLoad2);
-                        loader2.addEventListener("complete", handleComplete2);
-                        loader2.loadManifest(lib2.properties.manifest);
-                });
             }
 
             function handleFileLoad(evt) {
@@ -54,27 +53,32 @@
             }
 
             function handleComplete() {
-                window.loadSlides();
-                exportRoot = new lib.menu();
+                $('.loader-wrapper').fadeOut();
+                $(function(){
+                    window.loadSlides();
+                    exportRoot = new lib.menu();
 
-                stage = new createjs.Stage(canvas);
-                stage.addChild(exportRoot);
-                stage.update();
+                    stage = new createjs.Stage(canvas);
+                    stage.addChild(exportRoot);
+                    stage.update();
 
-                createjs.Ticker.setFPS(lib.properties.fps);
-                createjs.Ticker.addEventListener("tick", stage);
+                    createjs.Ticker.setFPS(lib.properties.fps);
+                    createjs.Ticker.addEventListener("tick", stage);
+                })
 
             }
 
             function handleComplete2() {
-                exportRoot2 = new lib2.canvas();
+                $(function(){
+                    exportRoot2 = new lib2.canvas();
 
-                stage2 = new createjs.Stage(canvas2);
-                stage2.addChild(exportRoot2);
-                stage2.update();
+                    stage2 = new createjs.Stage(canvas2);
+                    stage2.addChild(exportRoot2);
+                    stage2.update();
 
-                createjs.Ticker.setFPS(lib2.properties.fps);
-                createjs.Ticker.addEventListener("tick", stage2);
+                    createjs.Ticker.setFPS(lib2.properties.fps);
+                    createjs.Ticker.addEventListener("tick", stage2);
+                });
             }
         </script>
         <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400' rel='stylesheet' type='text/css'>
