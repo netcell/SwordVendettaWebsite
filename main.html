@@ -22,8 +22,10 @@
             var canvas2, stage2, exportRoot2;
             var loadCanvas, loadCanvas2;
 
-            var promises = [];
+            var promises  = [];
             var promises2 = [];
+            var promises3 = [];
+
             for (var i = lib.properties.manifest.length - 1; i >= 0; i--) {
                 promises.push($.get(lib.properties.manifest[i].src));
             };
@@ -32,8 +34,8 @@
             };
             $.when.apply($.when, promises).always(function(){
                 $('.loader-wrapper').fadeOut();
-                window.loadSlides();
             });
+
             var loader = new createjs.LoadQueue(false);
                 loader.addEventListener("fileload", handleFileLoad);
                 loader.addEventListener("complete", handleComplete);
@@ -63,6 +65,7 @@
             }
 
             function handleComplete() {
+                window.loadSlides();
                 if (!canvas) return loadCanvas = true;
                 exportRoot = new lib.menu();
 
