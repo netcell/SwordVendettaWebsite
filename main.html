@@ -6,18 +6,70 @@
         <title>Sword of Vendetta: Dojo's Last Blood</title>
         <meta name="description" content="A action adventure JRPG about vengence, betrayal and romance based on real Vietnamese historical events.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <!-- Place favicon.ico in the root directory -->
-        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400' rel='stylesheet' type='text/css'>
-        <link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="css/normalize.min.css">
-        <link rel="stylesheet" href="css/main.min.css">
         <script src="js/vendor/easeljs-0.7.1.min.js"></script>
         <script src="js/vendor/tweenjs-0.5.1.min.js"></script>
         <script src="js/vendor/movieclip-0.7.1.min.js"></script>
         <script src="js/vendor/preloadjs-0.4.1.min.js"></script>
         <script src="js/menu.min.js"></script>
+        <script>
+            var canvas, stage, exportRoot;
+            var canvas2, stage2, exportRoot2;
+
+            var loader = new createjs.LoadQueue(false);
+                loader.addEventListener("fileload", handleFileLoad);
+                loader.addEventListener("complete", handleComplete);
+                loader.loadManifest(lib.properties.manifest);
+
+            var loader2 = new createjs.LoadQueue(false);
+                loader2.addEventListener("fileload", handleFileLoad2);
+                loader2.addEventListener("complete", handleComplete2);
+                loader2.loadManifest(lib2.properties.manifest);
+
+            function init() {
+                canvas = document.getElementById("canvas");
+                images = images||{};
+
+                canvas2 = document.getElementById("canvas2");
+                images2 = images2||{};
+            }
+
+            function handleFileLoad(evt) {
+                if (evt.item.type == "image") { images[evt.item.id] = evt.result; }
+            }
+
+            function handleFileLoad2(evt) {
+                if (evt.item.type == "image") { images2[evt.item.id] = evt.result; }
+            }
+
+            function handleComplete() {
+                $('.loader-wrapper').fadeOut();
+                exportRoot = new lib.menu();
+
+                stage = new createjs.Stage(canvas);
+                stage.addChild(exportRoot);
+                stage.update();
+
+                createjs.Ticker.setFPS(lib.properties.fps);
+                createjs.Ticker.addEventListener("tick", stage);
+            }
+
+            function handleComplete2() {
+                exportRoot2 = new lib2.canvas();
+
+                stage2 = new createjs.Stage(canvas2);
+                stage2.addChild(exportRoot2);
+                stage2.update();
+
+                createjs.Ticker.setFPS(lib2.properties.fps);
+                createjs.Ticker.addEventListener("tick", stage2);
+            }
+        </script>
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400' rel='stylesheet' type='text/css'>
+        <link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/main.min.css">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
     </head>
     <body onload="init();">
         <!--[if lt IE 8]>
@@ -166,60 +218,6 @@
         <script src="js/vendor/jssor.slider.min.js"></script>
         <script src="js/plugins.min.js"></script>
         <script src="js/main.min.js"></script>
-
-        <script>
-            var canvas, stage, exportRoot;
-            var canvas2, stage2, exportRoot2;
-
-            function init() {
-                canvas = document.getElementById("canvas");
-                images = images||{};
-
-                var loader = new createjs.LoadQueue(false);
-                loader.addEventListener("fileload", handleFileLoad);
-                loader.addEventListener("complete", handleComplete);
-                loader.loadManifest(lib.properties.manifest);
-
-                canvas2 = document.getElementById("canvas2");
-                images2 = images2||{};
-
-                var loader2 = new createjs.LoadQueue(false);
-                loader2.addEventListener("fileload", handleFileLoad2);
-                loader2.addEventListener("complete", handleComplete2);
-                loader2.loadManifest(lib2.properties.manifest);
-            }
-
-            function handleFileLoad(evt) {
-                if (evt.item.type == "image") { images[evt.item.id] = evt.result; }
-            }
-
-            function handleFileLoad2(evt) {
-                if (evt.item.type == "image") { images2[evt.item.id] = evt.result; }
-            }
-
-            function handleComplete() {
-                $('.loader-wrapper').fadeOut();
-                exportRoot = new lib.menu();
-
-                stage = new createjs.Stage(canvas);
-                stage.addChild(exportRoot);
-                stage.update();
-
-                createjs.Ticker.setFPS(lib.properties.fps);
-                createjs.Ticker.addEventListener("tick", stage);
-            }
-
-            function handleComplete2() {
-                exportRoot2 = new lib2.canvas();
-
-                stage2 = new createjs.Stage(canvas2);
-                stage2.addChild(exportRoot2);
-                stage2.update();
-
-                createjs.Ticker.setFPS(lib2.properties.fps);
-                createjs.Ticker.addEventListener("tick", stage2);
-            }
-            </script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
