@@ -31,6 +31,8 @@
                     loader.addEventListener("fileload", handleFileLoad);
                     loader.addEventListener("complete", handleComplete);
                     loader.loadManifest(lib.properties.manifest);
+                $('.loader-wrapper').fadeOut();
+                window.loadSlides();
             });
             $.when.apply($.when, promises2).always(function(){
                 var loader2 = new createjs.LoadQueue(false);
@@ -58,8 +60,6 @@
             }
 
             function handleComplete() {
-                $('.loader-wrapper').fadeOut();
-                window.loadSlides();
                 if (!canvas) return loadCanvas = true;
                 exportRoot = new lib.menu();
 
