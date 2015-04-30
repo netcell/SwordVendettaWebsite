@@ -125,12 +125,13 @@ textarea {
     width: 100%;
 }
 
-#container {
+.container {
     background: #FFF;
     color: #000;
     font-weight: 200;
     max-width: 680px;
     margin: auto;
+    overflow: hidden;
 }
 
 .block {

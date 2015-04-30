@@ -3,7 +3,6 @@ window.loadSlides = function () {
     for (var i = 1; i <= 9; i++) {
         $('#slides').append('<div><img u="image" src="img/alila/0' + i + '.jpg" /><img u="thumb" src="img/alila/thumb-0' + i + '.jpg"/></div>');
     };
-    
     var _SlideshowTransitions = [
     //Fade in L
         {$Duration: 1200, x: 0.3, $During: { $Left: [0.3, 0.7] }, $Easing: { $Left: $JssorEasing$.$EaseInCubic, $Opacity: $JssorEasing$.$EaseLinear }, $Opacity: 2 }
